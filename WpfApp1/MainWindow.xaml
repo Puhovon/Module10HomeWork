@@ -1,0 +1,69 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        
+    Title="MainWindow" Height="450" Width="800" Background="#FF1F1F1F">
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0" Grid.Column="0" Height="26" VerticalAlignment="Top" Background="#FF1F1F1F" Foreground="White">
+            <MenuItem Header="File">
+
+                <MenuItem Header="SaveData" Click="MenuItem_Click_Save" Background="#FF1F1F1F" Foreground="White"/>
+                
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="View">
+                <MenuItem Header="Clear history" Click="MenuItem_Click_Clear"  Background="#FF1F1F1F" Foreground="White"/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="MenuItem_Click_About" Background="#FF1F1F1F" Foreground="White"/>
+            </MenuItem>
+        </Menu>
+        <ListBox x:Name="logList" 
+                 Grid.Column="0"
+                 HorizontalAlignment="Stretch" 
+                 Margin="5,25,5,5" 
+                 VerticalAlignment="Stretch" Background="#FF1F1F1F" 
+                 >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" Margin="5" BorderThickness="1" CornerRadius="10">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{Binding FirstName}" Margin="0" FontSize="15" Foreground="White"/>
+                            <TextBlock Text="{Binding Msg}" Margin="0" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="{Binding Time}" Margin="10 0" FontSize="10" TextAlignment="Right" Foreground="White"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <GroupBox Grid.Column="1" 
+                  FontSize="20"
+                  Header="Отправка сообщения"
+                  
+                  HorizontalAlignment="Stretch" 
+                  Margin="5"
+                  VerticalAlignment="Stretch" Foreground="#FFFAFAFA" 
+                  >
+            <StackPanel>
+                <TextBlock x:Name="TargetSend" 
+                           Text="{Binding ElementName=logList, Path=SelectedItem.Id}"
+                           Visibility="Collapsed"
+                           Margin="5"/>
+
+                <TextBox x:Name="txtMsgSend" FontSize="20" Margin="5"/>
+
+                <Button x:Name="BtnMsgSend" FontSize="20" Content="Отправить" Margin="5" Click="BtnMsgSendClick" Foreground="#FFFAFAFA" Background="#FF2E2E2E"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
