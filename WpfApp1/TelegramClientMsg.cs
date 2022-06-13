@@ -74,7 +74,7 @@ namespace WpfApp1
             this.BotMessageLog = new ObservableCollection<MessageLog>();
             this.w = W;
 
-            bot = new TelegramBotClient("5231816245:AAE06GBsraf_BUDeLeNelCUKXpRdBIJdzWE");
+            bot = new TelegramBotClient("");
 
             bot.OnMessage += MessageListener;
 
