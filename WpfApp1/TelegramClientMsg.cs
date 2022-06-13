@@ -83,8 +83,16 @@ namespace WpfApp1
 
         public void SendMessage(string Text, string Id)
         {
-            long id = Convert.ToInt64(Id);
-            bot.SendTextMessageAsync(id, Text);
+            try
+            {
+                long id = Convert.ToInt64(Id);
+                bot.SendTextMessageAsync(id, Text);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex}","Exeption", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
         public async void Download(string fileId, string path, Message msg)
         {
